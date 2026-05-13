@@ -82,6 +82,15 @@ void seedData(Hospital &hospital){
     hospital.bookAppointment(a3);
     hospital.bookAppointment(a4);
 
+    // --------------------- Bills ----------------------
+    Bill b1("b101",a1,300,250,0);
+    Bill b2("b102",a2,300,550,1000);
+    Bill b3("b103",a3,300,250,0);
+
+    hospital.addBill(b1);
+    hospital.addBill(b2);
+    hospital.addBill(b3);
+
     cout << "\nDummy Data Loaded Successfully\n" << endl;
 }
 

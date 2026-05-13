@@ -22,7 +22,10 @@ class Panel {
             cout << "5. Show Doctor Info" << endl;
             cout << "6. Show Appointment Info" << endl;
             cout << "7. Change Appointment Status" << endl;
-            cout << "8. Show Hospital Info" << endl;
+            cout << "8. Generate Bill" << endl;
+            cout << "9. Show Bill" << endl;
+            cout << "10. Pay Bill" << endl;
+            cout << "11. Show Hospital Info" << endl;
             cout << "0. Exit" << endl;
 
             cout << "\nEnter Choice: ";
@@ -248,9 +251,121 @@ class Panel {
                     break;
                 }
 
-                // ================= HOSPITAL INFO =================
+                // ================= GENERATE BILL =================
 
                 case 8: {
+
+                    string billId;
+                    string appointmentId;
+
+                    double consultationFee;
+                    double medicineFee;
+                    double roomFee;
+
+                    cin.ignore();
+
+                    cout << "Enter Bill ID: ";
+                    getline(cin, billId);
+
+                    cout << "Enter Appointment ID: ";
+                    getline(cin, appointmentId);
+
+                    try {
+
+                        Appointment& appointment =
+                            hospital.showAppointment(appointmentId);
+
+                        cout << "Enter Consultation Fee: ";
+                        cin >> consultationFee;
+
+                        cout << "Enter Medicine Fee: ";
+                        cin >> medicineFee;
+
+                        cout << "Enter Room Fee: ";
+                        cin >> roomFee;
+
+                        Bill bill(
+                            billId,
+                            appointment,
+                            consultationFee,
+                            medicineFee,
+                            roomFee
+                        );
+
+                        hospital.addBill(bill);
+
+                        cout << "\nBill Generated Successfully" << endl;
+                    }
+
+                    catch(runtime_error &e){
+
+                        cout << "\nError: "
+                            << e.what()
+                            << endl;
+                    }
+
+                    break;
+                }
+
+                // ================= SHOW BILL =================
+
+                case 9: {
+
+                    string billId;
+
+                    cin.ignore();
+
+                    cout << "Enter Bill ID: ";
+                    getline(cin, billId);
+
+                    try {
+
+                        hospital.getBill(billId).info();
+                    }
+
+                    catch(runtime_error &e){
+
+                        cout << "\nError: "
+                            << e.what()
+                            << endl;
+                    }
+
+                    break;
+                }
+
+                // ================= PAY BILL =================
+
+                case 10: {
+
+                    string billId;
+
+                    cin.ignore();
+
+                    cout << "Enter Bill ID: ";
+                    getline(cin, billId);
+
+                    try {
+
+                        Bill& bill = hospital.getBill(billId);
+
+                        bill.markPaid();
+
+                        cout << "\nBill Paid Successfully" << endl;
+                    }
+
+                    catch(runtime_error &e){
+
+                        cout << "\nError: "
+                            << e.what()
+                            << endl;
+                    }
+
+                    break;
+                }
+
+                // ================= HOSPITAL INFO =================
+
+                case 11: {
 
                     hospital.info();
 

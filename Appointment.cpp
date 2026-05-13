@@ -39,6 +39,14 @@ class Appointment {
         return this->appointmentId;
     }
 
+    string getPatientName(){
+        return this->patient.name;
+    }
+
+    string getDoctorName(){
+        return this->doctor.name;
+    }
+
     void info(){
         cout << "\n===== APPOINTMENT DETAILS =====" << endl;
 

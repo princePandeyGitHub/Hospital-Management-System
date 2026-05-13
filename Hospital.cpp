@@ -4,6 +4,7 @@
 #include <vector>
 #include <stdexcept>
 #include "Appointment.cpp"
+#include "Bill.cpp"
 
 class Hospital {
     public:
@@ -14,6 +15,7 @@ class Hospital {
         vector<Patient> patients;
         vector<Doctor> doctors;
         vector<Appointment> appointments;
+        vector<Bill> bills;
 
     public:
 
@@ -82,6 +84,20 @@ class Hospital {
         }
 
         throw runtime_error("Appointment Not Found");
+    }
+
+    // ------------------ Bills ------------------
+    void addBill(Bill& bill){
+        bills.push_back(bill);
+    }
+
+    Bill& getBill(string id){
+        for(int i=0; i<bills.size(); i++){
+            if(bills[i].getBillId() == id){
+                return bills[i];
+            }
+        }
+        throw runtime_error("Bill Not Found");
     }
 
     // ================= COUNTS =================
