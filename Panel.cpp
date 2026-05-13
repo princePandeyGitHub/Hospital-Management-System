@@ -21,8 +21,9 @@ class Panel {
             cout << "4. Show Patient Info" << endl;
             cout << "5. Show Doctor Info" << endl;
             cout << "6. Show Appointment Info" << endl;
-            cout << "7. Show Hospital Info" << endl;
-            cout << "8. Exit" << endl;
+            cout << "7. Change Appointment Status" << endl;
+            cout << "8. Show Hospital Info" << endl;
+            cout << "0. Exit" << endl;
 
             cout << "\nEnter Choice: ";
             cin >> choice;
@@ -231,9 +232,25 @@ class Panel {
                     break;
                 }
 
+                case 7: {
+                    // change Appointment Status
+                    string id,status;
+                    cin.ignore();
+                    cout << "Enter Appointment ID: ";
+                    getline(cin,id);
+                    cout << "Enter Updated Status: ";
+                    getline(cin,status);
+                    try {
+                        hospital.showAppointment(id).setStatus(status);
+                    } catch(runtime_error &e){
+                        cout << "\nError: " << e.what() << endl;
+                    }
+                    break;
+                }
+
                 // ================= HOSPITAL INFO =================
 
-                case 7: {
+                case 8: {
 
                     hospital.info();
 
@@ -242,7 +259,7 @@ class Panel {
 
                 // ================= EXIT =================
 
-                case 8: {
+                case 0: {
 
                     cout << "\nExiting Program..." << endl;
 
