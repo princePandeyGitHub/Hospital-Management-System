@@ -25,6 +25,10 @@ class Hospital {
     // ================= PATIENTS =================
 
     void addPatient(Patient &patient){
+        if(patient.getId() == "Not available"){
+            cout << "Request Denied! Patient should be assigned a Unique Id before adding them to Hospital." << endl;
+            return;
+        }
         patients.push_back(patient);
     }
 
@@ -43,6 +47,10 @@ class Hospital {
     // ================= DOCTORS =================
 
     void addDoctor(Doctor &doctor){
+        if(doctor.getId() == "Not available"){
+            cout << "Request Denied! Doctor should be assigned a Unique Id before adding them to Hospital." << endl;
+            return;
+        }
         doctors.push_back(doctor);
     }
 
